@@ -1,0 +1,92 @@
+div.smileyface {
+    width: 300px;
+    height: 300px;
+    position: relative;
+    border-radius: 150px;
+    display: inline-block;
+    margin: 20px;
+    box-shadow: inset 0px -14px 14px rgba(0, 0, 0, .3), 0px 2px 20px rgba(0, 0, 0, .6);
+}
+
+div.smileyface.yellow {
+    background: #ffe632;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fffe8d), to(#f6d23e));
+    background: -moz-linear-gradient(top,  #fffe8d,  #f6d23e);
+}
+
+div.smileyface.green {
+    background: #c9de96; /* Old browsers */
+    background: -moz-linear-gradient(top, #c9de96 0%, #8ab66b 44%, #398235 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c9de96), color-stop(44%,#8ab66b), color-stop(100%,#398235)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #c9de96 0%,#8ab66b 44%,#398235 100%); /* Chrome10+,Safari5.1+ */
+}
+
+p.eyes {
+    width: 50px;
+    height: 80px;
+    background: #222;
+    border-radius: 100px/160px;
+    -webkit-border-radius: 100px 160px;
+    -moz-border-radius: 100px/160px;
+    position: absolute;
+    top: 40px;
+    box-shadow: 0 2px 0 rgba(255,255,255, 0.8);
+    -webkit-box-shadow: 0 2px 0 rgba(255,255,255, 0.8);
+    -moz-box-shadow: 0 2px 0 rgba(255,255,255, 0.8);
+}    
+
+p.eyes.lefteye {
+    left: 75px;
+}
+
+p.eyes.righteye {
+    right: 75px;
+}
+
+div.smile {
+    width: 200px;
+    height: 70px;
+    border: 10px solid #222;
+    border-top: 0;
+    background: rgba(0,0,0,0);
+    border-radius: 0 0 120px 120px / 0 0 90px 90px;
+    position: absolute;
+    bottom: 50px;
+    left: 38px;
+
+}
+div.sad {
+    width: 200px;
+    height: 70px;
+    border: 10px solid #222;
+    background: transparent;
+    border-radius: 120px 120px 0px 0px / 90px 90px 0px 0px;
+    position: absolute;
+    bottom: 70px;
+    left: 48px;
+    border-bottom: 0px;
+
+}
+
+
+div.corner {
+    width: 10px;
+    height: 30px;
+    background: #222;
+    border-radius: 100px/160px;
+    position: absolute;
+    top: -12px;
+    -webkit-transform: rotate(65deg);
+    -moz-transform: rotate(65deg);
+    left: -12px;
+}
+
+div.corner.right {
+    left: 202px;
+    -webkit-transform: rotate(-65deg);
+    -moz-transform: rotate(-65deg);        
+}​
+
+div.staff{
+    clear: both;
+}

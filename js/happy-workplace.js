@@ -11,6 +11,7 @@ HappyWorkplace.Worker = function(config) {
     this.happiness = 100;
     this.name = "Adam";
     $.extend(this, config);
+    this.make_face();
         
 };
 
@@ -29,6 +30,10 @@ HappyWorkplace.Worker.prototype = {
     
     status: function () {
         return this.name + ' is ' + this.happiness + '% happy';
+    },
+    
+    make_face: function () {
+        this.face = $('<div class="yellow smileyface"><p class="eyes lefteye"></p><p class="eyes righteye"></p><div class="smile"></div></div>');
     }
 };
 
@@ -54,6 +59,7 @@ HappyWorkplace.Node = function (config, worker) {
     this.num_coworkers = 0;
     this.num_staff = 0;
     $.extend(this, config);
+    this.add();
 
 };
 
@@ -90,6 +96,14 @@ HappyWorkplace.Node.prototype = {
                  " " + this.num_staff + " staff" + "\n" + 
                  " " + this.num_coworkers + " coworkers" + "\n" +
                 "===============================================";
+    },
+    
+    add: function () {
+        $('#canvas').append(this.worker.face);
+    },
+    
+    render: function () {
+            
     }
     
 };
@@ -114,12 +128,20 @@ HappyWorkplace.Network = {
     
 };
 
+//A face object literal
+HappyWorkplace.Face = function () {
+    
+};
+
 //var worker;
 //worker = new HappyWorkplace.Worker({min_happy: 5, max_happy:95});
 //worker2 = new HappyWorkplace.Worker({min_happy: 1, max_happy:99});
-
 var boss;
-boss = new HappyWorkplace.Node()
+$(document).ready(function() {
+    boss = new HappyWorkplace.Node();
+    boss.employ();
+});
+
 
 
 //Initialise the simulation (a self-executing singleton)
