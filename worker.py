@@ -75,15 +75,6 @@ def main():
         cls()
         i += 1
                 
-        #myWorker.status()
-        #myWorker.disposition(-20)
-    # while True:
-    #     myWorker.update(random.randint(0,100))
-    #     myWorker.status()
-    #     time.sleep(1)
-    
-    #myWorker.status()
-
 def cls():
     #clear the screen
     print chr(27) + "[2J"
