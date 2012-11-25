@@ -10,7 +10,7 @@ HappyWorkplace.Worker = function(config) {
     this.min_happy = 0;
     this.max_happy = 100;
     this.happiness = 100;
-    this.id = 1;
+    this.id = nameGen.capitalize(nameGen.randomName());
     
     //overwrite defaults with any passed params
     $.extend(this, config);

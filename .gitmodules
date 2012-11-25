@@ -1,0 +1,3 @@
+[submodule "lib/Random-Name-Generator"]
+	path = lib/Random-Name-Generator
+	url = git@github.com:gregferrell/Random-Name-Generator.git
