@@ -55,19 +55,6 @@ div.smile {
     left: 38px;
 
 }
-div.sad {
-    width: 200px;
-    height: 70px;
-    border: 10px solid #222;
-    background: transparent;
-    border-radius: 120px 120px 0px 0px / 90px 90px 0px 0px;
-    position: absolute;
-    bottom: 70px;
-    left: 48px;
-    border-bottom: 0px;
-
-}
-
 
 div.corner {
     width: 10px;
@@ -88,5 +75,9 @@ div.corner.right {
 }​
 
 div.staff{
-    clear: both;
+    display: block;
+}
+
+#canvas {
+    text-align: center;
 }

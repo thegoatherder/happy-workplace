@@ -21,6 +21,7 @@ HappyWorkplace.Worker.prototype = {
         this.happiness = amount;
         this.correct_happiness();
         this.happiness = Math.round(this.happiness*10)/10;
+        this.render();
     },
 
     correct_happiness: function() {
@@ -34,6 +35,10 @@ HappyWorkplace.Worker.prototype = {
     
     make_face: function () {
         this.face = $('<div class="yellow smileyface"><p class="eyes lefteye"></p><p class="eyes righteye"></p><div class="smile"></div></div>');
+    },
+    
+    render: function () {
+        
     }
 };
 
@@ -42,7 +47,10 @@ HappyWorkplace.Worker.prototype = {
  */
 HappyWorkplace.Node = function (config, worker) {
     
+    //add the passed worker, or create on on the fly
     this.worker = worker || new HappyWorkplace.Worker();
+    
+    //configuration
     this.min_effect_up = 0;
     this.max_effect_up = 0.5;
     this.min_effect_across = 0.25;
@@ -52,13 +60,25 @@ HappyWorkplace.Node = function (config, worker) {
     this.promotion_gain = 10;
     this.min_resistance = 0;
     this.max_resistance = 1;
+    
+    //related nodes
     this.coworkers = [];
     this.staff = [];
     this.boss = false;
+    
+    //counters
     this.num_bosses = 0;
     this.num_coworkers = 0;
     this.num_staff = 0;
+    
+    //apply config
     $.extend(this, config);
+    
+    //div to hold child nodes
+    this.staff_div = $('<div class="staff"></div>');
+    this.staff_div_added = false;
+    
+    //add this node's face to the canvas
     this.add();
 
 };
@@ -71,9 +91,9 @@ HappyWorkplace.Node.prototype = {
     
     employ: function () {
         console.log('adding staff...');
-        new_staff = new HappyWorkplace.Node({boss: this},new HappyWorkplace.Worker);
+        new_staff = new HappyWorkplace.Node({boss: this},new HappyWorkplace.Worker());
         new_staff.num_bosses = this.num_bosses + 1;
-        console.log('getting coworkers');
+        console.log('getting coworkers...');
         if(this.num_staff > 0) new_staff.coworkers = this.staff[0].coworkers;
         
         //first add this staff member as a coworker of all of this Node's staff
@@ -84,9 +104,11 @@ HappyWorkplace.Node.prototype = {
         
         if(this.num_staff > 0) new_staff.num_coworkers = this.staff[0].num_coworkers;
         
-        //now add this staff member to the list of this Node's staff
+        //now add this staff member to the list of this Node's staff (child nodes)
         this.staff.push(new_staff);
         this.num_staff += 1;
+        
+        new_staff.add();
     },
     
     status: function () {
@@ -99,7 +121,19 @@ HappyWorkplace.Node.prototype = {
     },
     
     add: function () {
-        $('#canvas').append(this.worker.face);
+        console.log('adding smiley...');
+        if( ! this.boss ) {
+            console.log('Appending to canvas...');
+            $('#canvas').append(this.worker.face);
+        }
+        else {
+            console.log('Appending to staff...');
+            if( ! this.boss.staff_div_added ) {
+                $('#canvas').append(this.boss.staff_div);
+                this.boss.staff_div_added = true;
+            } 
+            $(this.boss.staff_div).append(this.worker.face);
+        }
     },
     
     render: function () {
@@ -139,6 +173,7 @@ HappyWorkplace.Face = function () {
 var boss;
 $(document).ready(function() {
     boss = new HappyWorkplace.Node();
+    boss.employ();
     boss.employ();
 });
 
