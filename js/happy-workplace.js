@@ -77,9 +77,6 @@ HappyWorkplace.Node = function (config, worker) {
     //div to hold child nodes
     this.staff_div = $('<div class="staff"></div>');
     this.staff_div_added = false;
-    
-    //add this node's face to the canvas
-    this.add();
 
 };
 
@@ -134,6 +131,8 @@ HappyWorkplace.Node.prototype = {
             } 
             $(this.boss.staff_div).append(this.worker.face);
         }
+        var $this = this;
+        $(this.worker.face).click(function() { $this.employ(); });
     },
     
     render: function () {
@@ -173,8 +172,9 @@ HappyWorkplace.Face = function () {
 var boss;
 $(document).ready(function() {
     boss = new HappyWorkplace.Node();
-    boss.employ();
-    boss.employ();
+    boss.add();
+    //boss.employ();
+    //boss.employ();
 });
 
 

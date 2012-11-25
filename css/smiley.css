@@ -6,6 +6,7 @@ div.smileyface {
     display: inline-block;
     margin: 20px;
     box-shadow: inset 0px -14px 14px rgba(0, 0, 0, .3), 0px 2px 20px rgba(0, 0, 0, .6);
+    cursor: pointer;
 }
 
 div.smileyface.yellow {
@@ -75,6 +76,10 @@ div.corner.right {
 }​
 
 div.staff{
+    display: block;
+}
+
+div.team{
     display: block;
 }
 
