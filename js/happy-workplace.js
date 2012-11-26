@@ -60,7 +60,18 @@ HappyWorkplace.Worker.prototype = {
      * Redraw the worker's face with the current happiness
      */
     render: function () {
-        //@todo implement this
+        this.get_smile_height();
+        console.log('rendering: {happiness: '+this.happiness+'; height:'+ this.height + '}');
+        $(this.face).children('div.smile').css({"height": this.height+"px"});
+        var $this = this;
+        setTimeout(function() {$this.render()}, 500);
+    },
+    
+    /**
+     * Recalculates height of smile based on current happiness value
+     */
+    get_smile_height: function () {
+        this.height = Math.floor(this.happiness / 2 / 70 * 100);
     }
 };
 
@@ -174,6 +185,10 @@ HappyWorkplace.Node.prototype = {
             //Append this node to our boss's staff container
             $(this.boss.staff_div).append(this.worker.face);
         }
+        
+        //start the worker's render
+        //@todo have one render function for the whole canvas, not per worker?
+        this.worker.render();
         
         //store 'this' as jQuery click handler will overwrite it
         var $this = this;
